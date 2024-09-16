@@ -23,3 +23,10 @@ model_outputs = style_outputs + content_outputs
 
 model = keras.models.Model(vgg.input, model_outputs)
 print(model.summary())
+
+
+img = Image.open('/images/img.jpg')
+img_style = Image.open('/images/img_style.jpg')
+
+x_img = keras.applications.vgg19.preprocess_input(np.expand_dims(img, axis=0))
+x_img_style = keras.applications.vgg19.preprocess_input(np.expand_dims(img_style, axis=0))
