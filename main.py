@@ -40,3 +40,7 @@ def gram_matrix(input_tensor):
   n = tf.shape(a)[0]
   gram = tf.matmul(a, a, transpose_a=True)
   return gram / tf.cast(n, tf.float32)
+
+def get_style_loss(base_style, gram_target):
+  gram_style = gram_matrix(base_style)
+  return tf.reduce_mean(tf.square(gram_style - gram_target))
